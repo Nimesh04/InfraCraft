@@ -22,7 +22,8 @@ def mega_chaos_submitter():
         submission = {
             "jobId": job_id,
             "job": command,
-            "submission_time": time.time()
+            "submission_time": time.time(),
+            "status": "Queued"
         }
         job_queue.put(submission)
         print(f"🚀 Submitted chaotic job #{job_id}: {command}")
