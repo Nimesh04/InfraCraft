@@ -2,26 +2,39 @@ from job_queue import job_queue
 import subprocess
 import threading
 import time
-
+from chaos_submitter import mega_chaos_submitter
 
 def producer():
+    global stop_signal
     job_id = 1
+    auto_mode = False
     while True:
         try:
+            if auto_mode:
+                if(job_queue.empty()):
+                    stop_signal = True
+                    break
+                else:
+                    time.sleep(1)
+                    continue
             command = input("Enter your command/type \'exist\': ")
             if(command.lower() == "exist"):
                 if(job_queue.empty() == True):
                     print("Existing the program.")
-                    global stop_signal
                     stop_signal = True
                     break
+            elif command.lower() == "chaos":
+                print("🔥 Launching Mega Chaos Mode!")
+                mega_chaos_submitter()  # (optional) pass job_id if you want chaos jobs to have unique IDs
+                auto_mode = True
             else:
                 submission = {"jobId": job_id, "job": command, "submission_time": time.time()}
                 job_queue.put(submission)
                 print(f"✅ Job added successfully!")
                 job_id += 1
         except Exception as e:
-            return f"Error {e}"
+            print( f"Error: {e}")
+            continue
 
 
 def consumer():
@@ -61,7 +74,7 @@ if __name__ == "__main__":
 
         else:
             failed_job += 1
-            print(f"❌ Job ID: {result['jobID']} | Completion Time: {result['Completion_time']} | Command: {result['command']} | Status: Failed | Output:{result["output"]} | Error: {result["error"]}")
+            print(f"❌ Job ID: {result['jobID']} | Completion Time: {result['Completion_time']} | Command: {result['command']} | Status: Failed | Output:{result['output']} | Error: {result['error']}")
 
     print("\n \n ")
     print("🚀 InfraCraft Run Summary ")
