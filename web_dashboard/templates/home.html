@@ -3,14 +3,11 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="/web_dashboard/static/style.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
         <title>InfraCraft</title>
     </head>
 
-    <body>
-        <!-- <div class="top_container">
-            <h1>InfraCraft</h1>
-        </div> -->
+    <body> 
         <div class="sidebar_brand">
             <span class="logo_icon">🚀</span>
             <span class="brand_name">InfraCraft</span>
@@ -18,9 +15,9 @@
         <div class="main">
             <div class="left_container">
                 <div class="left_container_box">
-                    <button>Add</button>
-                    <button> Live Jobs</button>
-                    <button>Status</button>
+                    <button><a href="/">Add</a></button>
+                    <button><a href="/live_job">Live Jobs</a></button>
+                    <button><a href="/status">Status</a></button>
                 </div>
             </div>
             <div class="main_middle_body">

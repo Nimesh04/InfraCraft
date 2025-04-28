@@ -15,7 +15,9 @@ footer {
     color: rgb(190, 190, 190);
 }
 
-
+a:active, a:hover{
+     text-decoration: none;
+}
 .main {
     display: flex;
     min-height: calc(100vh - 120px);

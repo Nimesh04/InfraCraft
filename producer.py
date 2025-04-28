@@ -4,6 +4,13 @@ import threading
 import time
 from chaos_submitter import mega_chaos_submitter
 
+result_list = []
+stop_signal = False
+completed_jobs  = 0
+job_submission = 0
+successful_job = 0
+failed_job = 0
+
 def producer():
     global stop_signal
     job_id = 1
@@ -78,12 +85,6 @@ def consumer():
 
 
 if __name__ == "__main__":
-    result_list = []
-    stop_signal = False
-    completed_jobs  = 0
-    job_submission = 0
-    successful_job = 0
-    failed_job = 0
     t1 = threading.Thread(target= consumer)
     t1.start()
     producer()
