@@ -1,0 +1,146 @@
+body{
+    background-color: #121212 ;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+footer {
+    text-align: center;
+    padding: 1em;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 0.9em;
+    color: rgb(190, 190, 190);
+}
+
+
+.main {
+    display: flex;
+    min-height: calc(100vh - 120px);
+}
+
+
+.sidebar_brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8em 0;
+    border-bottom: 0.14em solid rgb(48, 48, 48);
+}
+
+
+.logo_icon {
+    font-size: 1.5em;
+    margin-right: 0.3em;
+}
+
+.brand_name {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.left_container {
+    width: 220px;
+    background-color: #252525;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    padding-top: 0.5em; 
+    height: calc(100vh - 80px); /* full viewport minus top and footer height */
+    border-right: 1px solid #555;
+    z-index: 1;
+}
+
+
+.left_container_box {
+    display: flex;
+    flex-direction: column;
+    gap: 1em; /* adds nice spacing between buttons */
+}
+
+
+.left_container_box button{
+    padding: 1em;
+    background: none;
+    border: none;
+    color: white;
+}
+
+.left_container_box button:hover{
+    background-color: #00BFFF;
+}
+
+.main_middle_body{
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+    padding: 0 8em;
+}
+
+
+
+.submit_job_hdn{
+    color: #00BFFF;
+    font-size: 1.8em;
+    margin: 0.2em 0 ;
+}
+.submit_job_p{
+    font-size: 0.8em;
+    margin: 0.2em 0 1.8em 0;
+    color: rgb(181, 180, 180);
+}
+
+.enter_command_container{
+    background-color:#252525;
+    padding: 0.5em 1.5em 1.5em 1.5em;
+    border-radius: 0.8em;
+    max-height: fit-content;
+    width: 800px;
+
+}
+
+.enter_hdn{
+    margin: 0.1em 0.3em 0.8em 0.3em;
+    font-weight: normal;
+}
+.enter_p{
+    margin: 0 0.3em ;
+    color:rgb(175, 175, 175);
+    margin-bottom:0.3em;
+}
+
+
+.enter_command_container input{
+    display: block;
+    width: 97%;
+    background-color: #121212;
+    color: rgb(213, 210, 210);
+    margin: 0 0 0.7em 0;
+    border: 0;
+    padding:0.5em;
+    border-radius: 0.5em;
+}
+
+.enter_command_container button{
+    padding: 0.5em 1.0em;
+    background-color: #00BFFF;
+    color: rgb(255, 255, 255);
+    border: 0;
+    border-radius: 0.5em;
+    font-size: 0.9em;
+}
+
+
+.recent_job_container{
+    background-color: #252525;
+    margin-top: 2.5em;
+    padding: 0.1em 1em 1em 1em;
+    border-radius: 0.8em;
+}
+
+.recent_p{
+    margin: 0.1em 0.3em 0.8em 0.3em;
+    font-weight:normal;
+}
