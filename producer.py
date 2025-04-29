@@ -37,7 +37,7 @@ def producer():
             else:
                 submission = {
                     "jobId": job_id,
-                    "job": command, 
+                    "command": command, 
                     "submission_time": time.time(), 
                     "status": "Queued"
                     }
@@ -60,7 +60,7 @@ def consumer():
                 job = job_queue.get()
                 job["status"] = "Running"
                 print(f"\nJob {job['jobId']} is now {job['status']}")
-                result = subprocess.run(job["job"], shell=True, capture_output=True, text=True)
+                result = subprocess.run(job["command"], shell=True, capture_output=True, text=True)
                 if(result.returncode == 0):
                     job["status"] = "Completed"
                 else:
@@ -75,8 +75,6 @@ def consumer():
                                     "error": result.stderr,
                                     "status": job["status"]
                                     })
-                
-                
             else:
                 time.sleep(1.0)
         except Exception as e:

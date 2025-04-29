@@ -10,15 +10,23 @@ job_id = 1
 
 @app.route("/")
 def home():
-    return render_template("home.html")
+    recent_jobs = list(result_list[-5:])
+    return render_template("home.html", recent_jobs=recent_jobs)
 
 @app.route('/live_job')
 def live_job():
-    return render_template('live_job.html')
+    live_jobs = []
+
+    temp_queue = list(job_queue.queue)
+    for job in temp_queue:
+        if job['status'] == "Queued":
+            live_jobs.append(job)
+    return render_template('live_job.html', live_jobs=live_jobs)
 
 @app.route('/status')
 def status():
-    return render_template('status.html')
+    all_jobs = list(result_list)
+    return render_template('status.html', all_jobs=all_jobs)
 
 
 @app.route('/submit', methods=["POST"])
@@ -30,8 +38,8 @@ def submit():
     else:
         submission = {
                         "jobId": job_id,
-                        "job": command, 
-                        "submission_time": time.time(), 
+                        "command": command, 
+                        "submission_time": time.time(),
                         "status": "Queued"
                         }
         job_queue.put(submission)

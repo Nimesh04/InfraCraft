@@ -4,21 +4,26 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.png') }}">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=JetBrains+Mono&display=swap" rel="stylesheet">
         <title>InfraCraft</title>
     </head>
 
     <body> 
         <div class="sidebar_brand">
-            <span class="logo_icon">🚀</span>
+            <!-- <span class="logo_icon">🚀</span> -->
             <span class="brand_name">InfraCraft</span>
         </div>
         <div class="main">
             <div class="left_container">
-                <div class="left_container_box">
-                    <button><a href="/">Add</a></button>
-                    <button><a href="/live_job">Live Jobs</a></button>
-                    <button><a href="/status">Status</a></button>
-                </div>
+                <div class="left_container_box"> 
+                    <a href="/" class="nav_button">
+                        <img src="{{ url_for('static', filename='icons/add.png') }}" alt="Submit Icon" class="nav_icon">Submit Job</a>
+                    <a href="/live_job" class="nav_button">
+                        <img src="{{ url_for('static', filename='icons/pulse.png') }}" alt="Live Jobs Icon" class="nav_icon">Live Jobs</a>
+                    <a href="/status" class="nav_button">
+                        <img src="{{ url_for('static', filename='icons/checked.png') }}" alt="Status Icon" class="nav_icon">Status</a>
+                </div>                
             </div>
             <div class="main_middle_body">
                 <h2 class="submit_job_hdn"> Submit Job</h2>
@@ -35,11 +40,20 @@
     
                 <div class="recent_job_container">
                     <h2 class="recent_p">Recent jobs</h2>
+
+                    {% if recent_jobs %}
+                            {% for job in recent_jobs %}
+                            <div class="all_jobs">
+                                    <span>{{ job.command if job.command else job['command']}}</span>
+                                    <span> {{ job.status if job.status else job['status']}}</span>
+                            </div>    
+                            {% endfor %}
+                    {% else %}
+                        <p class="no_job"> No recent jobs yet.</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
-
-        
     </body>
 
     <footer>

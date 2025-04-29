@@ -1,4 +1,5 @@
 body{
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
     background-color: #121212 ;
     color: white;
     margin: 0;
@@ -33,10 +34,11 @@ a:active, a:hover{
 }
 
 
-.logo_icon {
-    font-size: 1.5em;
-    margin-right: 0.3em;
+.logo_img {
+    width: 50px;
+    height: 50px;
 }
+
 
 .brand_name {
     font-size: 2em;
@@ -62,16 +64,26 @@ a:active, a:hover{
     gap: 1em; /* adds nice spacing between buttons */
 }
 
-
-.left_container_box button{
-    padding: 1em;
-    background: none;
-    border: none;
-    color: white;
+.nav_button {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between icon and text */
+    text-decoration: none;
+    color: white; /* Or whatever color you want */
+    padding: 10px;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
 }
 
-.left_container_box button:hover{
+.nav_button:hover {
     background-color: #00BFFF;
+    color: black;
+}
+
+
+.nav_icon {
+    width: 20px; /* Adjust size as needed */
+    height: 20px;
 }
 
 .main_middle_body{
@@ -104,11 +116,11 @@ a:active, a:hover{
 }
 
 .enter_hdn{
-    margin: 0.1em 0.3em 0.8em 0.3em;
+    margin: 0.1em 0.3em 0.8em 0em;
     font-weight: normal;
 }
 .enter_p{
-    margin: 0 0.3em ;
+    margin: 0 0.3em 0 0 ;
     color:rgb(175, 175, 175);
     margin-bottom:0.3em;
 }
@@ -143,6 +155,20 @@ a:active, a:hover{
 }
 
 .recent_p{
-    margin: 0.1em 0.3em 0.8em 0.3em;
+    margin: 0.1em 0.3em 0.8em 0;
     font-weight:normal;
+}
+
+.all_jobs {
+    margin-bottom: 1em;
+    padding: 0.5em;
+    background-color: #353535;
+    border-radius: 0.5em;
+    line-height: 1.5em;
+}
+
+.no_job{
+    color: rgb(213, 212, 212);
+    font-size: 0.9em;
+    text-align: center;
 }
