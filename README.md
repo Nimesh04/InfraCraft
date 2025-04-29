@@ -1,116 +1,80 @@
-# InfraCraft 🔧
+InfraCraft 🚀
 
-InfraCraft is a lightweight, modular, and expandable **distributed job runner** built from scratch. 
+A lightweight Python-based job runner dashboard for developers.
 
-Think of it as your personal mini-infrastructure system: it queues tasks, distributes them to background workers, executes them, captures the results, and gives you a sweet battle report at the end.
+🌟 Project Overview
 
-Built in pure Python with real-world engineering principles. 
-InfraCraft v0.2 is our next evolution: better reliability, better reporting, future-ready for scaling.
+InfraCraft is a developer-first tool that allows users to submit, run, and monitor Python scripts through a web dashboard. Built with Flask and Python threading, it simulates a simplified CI/CD system, making it perfect for understanding queue-based job handling, backend systems, and live dashboards.
 
----
+🧰 Key Features
 
-# 🔄 Why InfraCraft?
+🔧 Submit Jobs: Choose scripts from a dynamic dropdown (auto-scanned from /jobs/).
 
-Big companies (Tesla, Google, etc.) have huge internal systems to build, test, and deploy code fast. 
-InfraCraft is a scrappy, hacker-friendly simulation of those systems that you can actually understand, extend, and show off.
+⏳ Real-Time Queue: Monitor jobs in Queued, Running, Completed, or Failed states.
 
----
+🔍 Live Logs: View each job's output or error with collapsible sections.
 
-# 📉 Current Features (v0.1)
+⏰ Timestamp & Duration: Track when jobs were submitted and how long they took.
 
-- Multithreaded Producer/Consumer model using Python `threading`
-- CLI-based shell command and script runner
-- Captures success, failure, output, and error logs
-- Graceful shutdown with user-triggered exit
-- Simple in-memory queue (Python `queue.Queue`)
-- No external dependencies (pure Python)
+🌐 Frontend Polished: Clean, custom UI with badges, icons, and dynamic job states.
 
----
+🌐 Tech Stack
 
-# 🎉 What's Coming (v0.2)
+Backend: Python, Flask, threading, subprocess, queue.Queue
 
-- Drain the job queue completely before shutting down
-- Timestamp jobs for accurate tracking
-- Improve output reporting (success/failure clearly formatted)
-- Catch subprocess crashes gracefully (with try/except)
-- Add a professional shutdown summary report
-- Introduce Job IDs for better result tracking
+Frontend: HTML5, CSS3, Jinja2 Templates
 
----
+📄 Getting Started
 
-# 🌐 Future Roadmap (v0.3+)
+1. Clone the Repo
 
-- Build a Flask-based web dashboard to submit/view jobs
-- Integrate Redis for multi-machine distributed queuing
-- Enable remote job submissions via API
-- Dockerize InfraCraft for easy deployment
+git clone https://github.com/your-username/infracraft.git
+cd infracraft
 
-This ain't just another CLI toy. It's your launchpad to real-world dev infrastructure. 
+2. Install Dependencies
 
----
+pip install flask
 
-# 📅 Project Timeline
+3. Add Jobs
 
-| Version | Goals |
-|---------|------|
-| v0.1    | Basic CLI-based task runner (Completed) |
-| v0.2    | Stability, polish, graceful UX improvements |
-| v0.3    | Web dashboard + distributed scaling features |
+Create .py scripts inside the /jobs folder. Example:
 
----
+# jobs/success_script.py
+print("✅ Script ran successfully!")
 
-# 🔧 How It Works (Bird's Eye)
+4. Run the App
 
-1. **Producer** - Takes user input for jobs (shell commands)
-2. **Consumer** - Background worker that continuously pulls and runs jobs
-3. **Result Storage** - Records command, output, error, timestamp, and status
-4. **Graceful Exit** - Ensures all jobs are completed before system shuts down
-5. **Result Reporting** - Clean job execution report after exit
+python dashboard.py
 
----
+Visit: http://localhost:5000
 
-# 🚀 Setup Instructions
+📸 Screenshots
 
-1. Clone the repo
-2. Make sure you have Python 3.10+
-3. Run the main script:
 
-```bash
-python infracraft.py
-```
 
-4. Enter jobs like:
 
-```bash
-python jobs/success_script.py
-python jobs/crash_script.py
-```
+🌐 Deploy on Render
 
-5. Type `exist` to exit and see the full result report
+Push code to GitHub
 
----
+Create a new Web Service at render.com
 
-# 🎉 Wanna Help?
+Set:
 
-- Fork it, tweak it, break it, improve it.
-- Open PRs for better result handling, dashboard features, Redis integration.
-- InfraCraft is meant to grow and evolve with contributors.
+Environment: Python
 
-Let's build real-world systems together.
+Start command: python dashboard.py
 
----
+Done! You now have a public InfraCraft dashboard.
 
-# 🔗 License
+🏆 What You'll Learn
 
-Hack it, build it, ship it.
+Flask routing and full-stack templating
 
----
+Job queuing with Python's queue.Queue
 
-# 🌟 Credits
+Thread-safe background processing
 
-Built from scratch, fueled by caffeine, ambition, and the stubborn belief that dev infrastructure should be fun to learn.
+Dynamic UI rendering with Jinja2
 
----
-
-InfraCraft is just getting started. Let's make it legendary.
-
+Real-time job log capture and presentation

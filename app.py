@@ -1,7 +1,9 @@
-from flask import Flask, request, redirect, render_template, url_for
-from producer import job_queue, consumer, result_list, stop_signal
+import os
 import threading
 import time
+from flask import Flask, request, redirect, render_template, url_for
+from producer import job_queue, consumer, result_list, stop_signal
+from datetime import datetime
 
 app = Flask(__name__, template_folder='web_dashboard/templates', static_folder='web_dashboard/static')
 
@@ -11,7 +13,15 @@ job_id = 1
 @app.route("/")
 def home():
     recent_jobs = list(result_list[-5:])
-    return render_template("home.html", recent_jobs=recent_jobs)
+
+    jobs_folder = os.path.join(os.getcwd(),"jobs")
+    scripts = sorted([
+                    f"python jobs/{f}"
+                    for f in os.listdir(jobs_folder)
+                    if f.endswith(".py")
+                     ])
+
+    return render_template("home.html", recent_jobs=recent_jobs, script_options=scripts)
 
 @app.route('/live_job')
 def live_job():
@@ -33,6 +43,8 @@ def status():
 def submit():
     global job_id
     command = request.form.get('command')
+    now = datetime.now()
+    readable_time = now.strftime("%I:%M%p")
     if not command.strip():
         return redirect('/')
     else:
@@ -40,6 +52,7 @@ def submit():
                         "jobId": job_id,
                         "command": command, 
                         "submission_time": time.time(),
+                        "submitted_at": readable_time,
                         "status": "Queued"
                         }
         job_queue.put(submission)
@@ -51,4 +64,4 @@ if __name__ == "__main__":
     t1 = threading.Thread(target=consumer)
     t1.daemon = True
     t1.start()
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000)

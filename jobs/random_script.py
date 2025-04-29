@@ -1,8 +1,12 @@
-# random_script.py
 
 import random
+import time
+
+print("Rolling the dice...")
+time.sleep(2)
 
 if random.choice([True, False]):
-    print("Random success! Lucky you.")
+    print("Random success!")
 else:
-    raise Exception("Random failure! Better luck next time.")
+    raise RuntimeError("Random failure occurred.")
+

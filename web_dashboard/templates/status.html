@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta http-equiv="refresh" content="5">  -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Optional: link to your CSS file -->
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.png') }}">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <title>InfraCraft - Job Status</title>
 </head>
 <body>
+    <!-- <p class="refresh_notice">🔄 Auto-refreshing every 10s</p> -->
 
     <div class="sidebar_brand">
-        <!-- <img src="{{ url_for('static', filename='icons/Logo.png')}}" class="logo_img"> -->
-        <!-- <span class="logo_img">🚀</span> -->
         <span class="brand_name">InfraCraft</span>
     </div>
     <div class="main">
@@ -35,13 +35,22 @@
                 <h2 class="enter_hdn">Job History</h2>
                 {% if all_jobs %}
                         {% for job in all_jobs %}
-                        <div class="all_jobs">
-                            <span>Job id:  {{ job.jobID if job.jobID else job['jobID']}}</span>
-                            <span> | Command: {{ job.command if job.command else job['command']}}</span>
-                            <span> | Status: {{ job.status if job.status else job['status']}} </span>
-                            <span> | Completion Time: {{ job.Completion_time if job.Completion_time else job['Completion_time']}}sec</span>
-                        </div>
-                    {% endfor %}
+                            <div class="job_card">
+                                <div class="job_card_top">
+                                    <div class="job_meta">
+                                        <p class="job_command">{{ job['command'] }}</p>
+                                        <p class="job_meta_info">{{ job['submitted_at'] }} • Job ID:{{ job['jobID'] }} </p>
+                                    </div>
+                                    <span class="status_badge {{ 'status_completed' if job['status'] == 'Completed' else 'status_failed' }}"> {{ job['status']}} </span>
+                                </div>
+                                {% if job.output or job.error %}
+                                <details class="job_output">
+                                    <summary>View Output</summary>
+                                    <pre class="{{ 'output_success' if job['status'] == 'Completed' else 'output_fail' }}">{{ job.output if job.output else job.error}}</pre>
+                                </details>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
                 {% else %}
                         <p class="no_job"> No job history.</p>
                 {% endif %}

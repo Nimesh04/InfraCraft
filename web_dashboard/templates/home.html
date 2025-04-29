@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- <meta http-equiv="refresh" content="5">  -->
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
         <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.png') }}">
         <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=JetBrains+Mono&display=swap" rel="stylesheet">
@@ -11,7 +12,6 @@
 
     <body> 
         <div class="sidebar_brand">
-            <!-- <span class="logo_icon">🚀</span> -->
             <span class="brand_name">InfraCraft</span>
         </div>
         <div class="main">
@@ -32,8 +32,14 @@
                 <div class="enter_command_container">
                     <form action="/submit" method="POST">
                         <h2 class="enter_hdn"> New Command </h2>
-                        <p class="enter_p">Enter Command</p>
-                        <input class="command_input_section" name="command" placeholder="e.g., python run_this_script.py" required>
+                        <p class="enter_p">Choose a Command</p>
+                        <select  class="command_input_section" name="command" requied>
+                            <option value="" disabled selected>Select a job to run</option>
+                            {% for script in script_options %}
+                                <option value="{{ script }}">{{ script }}</option>
+                            {% endfor %}
+                        </select>
+
                         <button class="submit_job_btn" type="submit">Submit Job</button>
                     </form>
                 </div>
@@ -43,9 +49,12 @@
 
                     {% if recent_jobs %}
                             {% for job in recent_jobs %}
-                            <div class="all_jobs">
+                            <div class="all_jobs submit_job">
+                                <div>
                                     <span>{{ job.command if job.command else job['command']}}</span>
-                                    <span> {{ job.status if job.status else job['status']}}</span>
+                                    <p class="submit_time"> {{ job.submitted_at if job.submitted_at else job['submitted_at']}} • <span> Job ID:{{job.jobID if job.jobID else job["jobID"]}}</span></p>
+                                </div>
+                                    <span class="submit_span {{ 'status_completed' if job['status'] == 'Completed' else 'status_failed'}}"> {{ job.status if job.status else job['status']}}</span>
                             </div>    
                             {% endfor %}
                     {% else %}

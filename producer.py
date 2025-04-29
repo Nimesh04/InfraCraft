@@ -70,6 +70,7 @@ def consumer():
                 result_list.append({"jobID": job["jobId"],
                                     "command": result.args, 
                                     "Completion_time": round(completion_time, 2) ,
+                                    "submitted_at": job["submitted_at"],
                                     "result":result.returncode, 
                                     "output": result.stdout, 
                                     "error": result.stderr,
@@ -87,7 +88,6 @@ if __name__ == "__main__":
     t1.start()
     producer()
     t1.join()
-    
 
     for result in result_list:
         job_submission += 1

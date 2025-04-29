@@ -1,3 +1,7 @@
+html, body {
+    height: 100%;
+}
+
 body{
     font-family: 'JetBrains Mono', 'Fira Code', monospace;
     background-color: #121212 ;
@@ -8,17 +12,27 @@ body{
 
 footer {
     text-align: center;
-    padding: 1em;
-    position: fixed;
+    padding: 0.5em;
+    /* position: fixed; */
     bottom: 0;
     width: 100%;
     font-size: 0.9em;
     color: rgb(190, 190, 190);
+    border-top: 0.14em solid rgb(48, 48, 48);
 }
 
 a:active, a:hover{
      text-decoration: none;
 }
+
+.refresh_notice {
+    font-size: 0.7em;
+    color: #888;
+    margin-top: -1em;
+    margin-bottom: 1em;
+    text-align: right;
+}
+
 .main {
     display: flex;
     min-height: calc(100vh - 120px);
@@ -52,7 +66,7 @@ a:active, a:hover{
     flex-direction: column;
     justify-content: flex-start; 
     padding-top: 0.5em; 
-    height: calc(100vh - 80px); /* full viewport minus top and footer height */
+    /* height: calc(100vh - 80px); full viewport minus top and footer height */
     border-right: 1px solid #555;
     z-index: 1;
 }
@@ -71,6 +85,7 @@ a:active, a:hover{
     text-decoration: none;
     color: white; /* Or whatever color you want */
     padding: 10px;
+    padding-left: 2.5em;
     font-size: 1em;
     transition: background-color 0.3s ease;
 }
@@ -126,16 +141,20 @@ a:active, a:hover{
 }
 
 
-.enter_command_container input{
+.command_input_section {
     display: block;
     width: 97%;
     background-color: #121212;
     color: rgb(213, 210, 210);
-    margin: 0 0 0.7em 0;
+    margin-bottom: 0.5em;
     border: 0;
-    padding:0.5em;
+    padding: 0.5em;
+    padding-left: 0.8em;
     border-radius: 0.5em;
+    appearance: none;
+    font-family: inherit;
 }
+
 
 .enter_command_container button{
     padding: 0.5em 1.0em;
@@ -164,11 +183,107 @@ a:active, a:hover{
     padding: 0.5em;
     background-color: #353535;
     border-radius: 0.5em;
-    line-height: 1.5em;
+}
+.submit_job{
+    padding: 0.8em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.submit_span{
+    font-size: 0.75em;
+    padding: 0.5em;
+    border-radius: 12px;
+    text-transform: uppercase;
+}
+
+.submit_time{
+    margin: 0;
+    font-size: 0.8em;
+    color: rgb(180, 180, 180);
 }
 
 .no_job{
     color: rgb(213, 212, 212);
     font-size: 0.9em;
     text-align: center;
+}
+
+.job_card {
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    padding: 1em;
+    margin-bottom: 1.2em;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.job_card_top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.job_meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+}
+
+.job_command {
+    font-weight: bold;
+    font-size: 1em;
+    color: white;
+    margin: 0;
+}
+
+.job_meta_info {
+    font-size: 0.8em;
+    color: rgb(180, 180, 180);
+    margin: 0;
+}
+
+.status_badge {
+    font-size: 0.75em;
+    padding: 0.3em 0.8em;
+    border-radius: 12px;
+    color: white;
+    text-transform: uppercase;
+}
+
+.status_completed {
+    background-color: #00c851; /* green */
+}
+
+.status_failed {
+    background-color: #ff4444; /* red */
+}
+
+.job_output {
+    margin-top: 0.8em;
+}
+
+.job_output summary {
+    font-size: 0.9em;
+    color: #00BFFF;
+    cursor: pointer;
+    margin-bottom: 0.4em;
+}
+
+.job_output pre {
+    background-color: #000;
+    padding: 1em;
+    border-radius: 8px;
+    font-size: 0.85em;
+    overflow-x: auto;
+    line-height: 1.5em;
+    margin: 0;
+}
+
+.output_fail{
+    color: red;
+}
+
+.output_success{
+    color:#00ff90;
 }
