@@ -261,6 +261,7 @@ a:active, a:hover{
 
 .status_queued{
     background-color: yellow;
+    color: black;
 }
 
 .status_running{
