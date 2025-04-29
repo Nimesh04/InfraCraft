@@ -259,6 +259,14 @@ a:active, a:hover{
     background-color: #ff4444; /* red */
 }
 
+.status_queued{
+    background-color: yellow;
+}
+
+.status_running{
+    background-color: #00BFFF;
+}
+
 .job_output {
     margin-top: 0.8em;
 }

@@ -43,21 +43,22 @@ def status():
 def submit():
     global job_id
     command = request.form.get('command')
-    now = datetime.now()
-    readable_time = now.strftime("%I:%M%p")
+    user_time = request.form.get('local_time')  # 👈 Grab from form
+
     if not command.strip():
         return redirect('/')
     else:
         submission = {
-                        "jobId": job_id,
-                        "command": command, 
-                        "submission_time": time.time(),
-                        "submitted_at": readable_time,
-                        "status": "Queued"
-                        }
+            "jobId": job_id,
+            "command": command, 
+            "submission_time": time.time(),
+            "submitted_at": user_time,   # ✅ use user's browser time
+            "status": "Queued"
+        }
         job_queue.put(submission)
         job_id += 1
         return redirect('/')
+
     
 
 if __name__ == "__main__":

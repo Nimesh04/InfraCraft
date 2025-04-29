@@ -31,6 +31,7 @@
     
                 <div class="enter_command_container">
                     <form action="/submit" method="POST">
+                        <input type="hidden" name="local_time" id="local_time">
                         <h2 class="enter_hdn"> New Command </h2>
                         <p class="enter_p">Choose a Command</p>
                         <select  class="command_input_section" name="command" requied>
@@ -63,6 +64,20 @@
                 </div>
             </div>
         </div>
+        <script>
+            const localInput = document.getElementById('local_time');
+            const now = new Date();
+          
+            // Format time as hh:mm AM/PM
+            const formatted = now.toLocaleTimeString([], {
+              hour: '2-digit',
+              minute: '2-digit',
+              hour12: true
+            });
+          
+            localInput.value = formatted;
+          </script>
+          
     </body>
 
     <footer>
