@@ -65,5 +65,5 @@ if __name__ == "__main__":
     t1 = threading.Thread(target=consumer)
     t1.daemon = True
     t1.start()
-    # app.run(host="0.0.0.0", port=5000)
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000)
+    # app.run(debug=True)
