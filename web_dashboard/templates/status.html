@@ -41,12 +41,17 @@
                                         <p class="job_command">{{ job['command'] }}</p>
                                         <p class="job_meta_info">{{ job['submitted_at'] }} • Job ID:{{ job['jobID'] }} </p>
                                     </div>
-                                    <span class="status_badge {{ 'status_completed' if job['status'] == 'Completed' else 'status_failed' }}"> {{ job['status']}} </span>
+                                    <span class="status_badge 
+                                    {% if job['status'] == 'Completed' %}status_completed
+                                    {% elif job['status'] == 'Failed' %}status_failed
+                                    {% elif job['status'] == 'Timeout' %}status_timeout
+                                    {% endif %}">{{ job['status'] }}</span>
                                 </div>
                                 {% if job.output or job.error %}
                                 <details class="job_output">
                                     <summary>View Output</summary>
-                                    <pre class="{{ 'output_success' if job['status'] == 'Completed' else 'output_fail' }}">{{ job.output if job.output else job.error}}</pre>
+                                    <pre class="{{ 'output_success' if job['status'] == 'Completed' else 'output_fail' }}">{% if job['status'] == 'Completed' %}Build successful in {{ job['Completion_time'] }}sec{{ '\n' }}{% else %}Build failed{{ '\n' }}{% endif %}{% if job.output %}{{ (job.output[:500] + '...\n[Output truncated - showing first 500 characters]') if job.output|length > 500 else job.output }}{% elif job.error %}{{ (job.error[:500] + '...\n[Error output truncated - showing first 500 characters]') if job.error|length > 500 else job.error }}
+                                                {% endif %}</pre>
                                 </details>
                                 {% endif %}
                             </div>

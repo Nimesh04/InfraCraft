@@ -36,7 +36,8 @@
                         <div class="all_jobs submit_job">
                             <div>
                                 <span>{{ job.command if job.command else job['command']}}</span>
-                                <p class="submit_time"> {{ job.submitted_at if job.submitted_at else job['submitted_at']}} • <span> Job ID:{{job.jobID if job.jobID else job["jobID"]}}</span></p>
+                                <p class="submit_time"> {{ job.submitted_at if job.submitted_at else job['submitted_at']}} • <span> Job ID:{{ job["jobID"] if job["jobID"] else "?" }}
+                                </span></p>
                             </div>
                                 <span class="submit_span {{ 'status_queued' if job['status'] == 'Queued' else 'status_running'}}"> {{ job.status if job.status else job['status']}}</span>
                         </div>  

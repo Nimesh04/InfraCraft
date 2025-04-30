@@ -43,7 +43,7 @@ def status():
 def submit():
     global job_id
     command = request.form.get('command')
-    user_time = request.form.get('local_time')  # 👈 Grab from form
+    user_time = request.form.get('local_time') 
 
     if not command.strip():
         return redirect('/')
@@ -52,11 +52,11 @@ def submit():
             "jobId": job_id,
             "command": command, 
             "submission_time": time.time(),
-            "submitted_at": user_time,   # ✅ use user's browser time
+            "submitted_at": user_time,   
             "status": "Queued"
         }
-        job_queue.put(submission)
         job_id += 1
+        job_queue.put(submission)
         return redirect('/')
 
     
@@ -65,4 +65,5 @@ if __name__ == "__main__":
     t1 = threading.Thread(target=consumer)
     t1.daemon = True
     t1.start()
-    app.run(host="0.0.0.0", port=5000)
+    # app.run(host="0.0.0.0", port=5000)
+    app.run(debug=True)

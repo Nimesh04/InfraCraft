@@ -260,7 +260,7 @@ a:active, a:hover{
 }
 
 .status_queued{
-    background-color: yellow;
+    background-color: rgb(255, 204, 0);
     color: black;
 }
 
@@ -295,4 +295,9 @@ a:active, a:hover{
 
 .output_success{
     color:#00ff90;
+}
+
+.status_timeout {
+    background-color: #ffcc00;
+    color: black;
 }
