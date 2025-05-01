@@ -24,50 +24,8 @@ Backend: Python, Flask, threading, subprocess, queue.Queue
 
 Frontend: HTML5, CSS3, Jinja2 Templates
 
-📄 Getting Started
 
-1. Clone the Repo
-
-git clone https://github.com/your-username/infracraft.git
-cd infracraft
-
-2. Install Dependencies
-
-pip install flask
-
-3. Add Jobs
-
-Create .py scripts inside the /jobs folder. Example:
-
-# jobs/success_script.py
-print("✅ Script ran successfully!")
-
-4. Run the App
-
-python dashboard.py
-
-Visit: http://localhost:5000
-
-📸 Screenshots
-
-
-
-
-🌐 Deploy on Render
-
-Push code to GitHub
-
-Create a new Web Service at render.com
-
-Set:
-
-Environment: Python
-
-Start command: python dashboard.py
-
-Done! You now have a public InfraCraft dashboard.
-
-🏆 What You'll Learn
+🏆 What I Learned:
 
 Flask routing and full-stack templating
 
