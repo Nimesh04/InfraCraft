@@ -1,7 +1,8 @@
 html, body {
-    height: 100%;
-}
-
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
 body{
     font-family: 'JetBrains Mono', 'Fira Code', monospace;
     background-color: #121212 ;
@@ -101,14 +102,22 @@ a:active, a:hover{
     height: 20px;
 }
 
-.main_middle_body{
+.main_middle_body {
     display: flex;
     flex-direction: column;
-    margin: 2rem;
-    padding: 0 8em;
+    align-items: center;        /* Centers child containers */
+    margin: 2rem auto;
+    padding: 0 1rem;            /* Safe margin for smaller screens */
+    box-sizing: border-box;
+    width: 100%;
 }
 
-
+.submit_job_section {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
 
 .submit_job_hdn{
     color: #00BFFF;
@@ -121,13 +130,27 @@ a:active, a:hover{
     color: rgb(181, 180, 180);
 }
 
+.enter_command_container,
+.recent_job_container {
+    width: 100%;
+    max-width: 800px;
+    padding: 0.5em 1.5em 1.5em 1.5em;
+}
+
+
 .enter_command_container{
     background-color:#252525;
-    padding: 0.5em 1.5em 1.5em 1.5em;
+    
     border-radius: 0.8em;
     max-height: fit-content;
-    width: 800px;
 
+}
+
+.recent_job_container{
+    background-color: #252525;
+    margin-top: 2.5em;
+    /* padding: 0.1em 1em 1em 1em; */
+    border-radius: 0.8em;
 }
 
 .enter_hdn{
@@ -166,12 +189,7 @@ a:active, a:hover{
 }
 
 
-.recent_job_container{
-    background-color: #252525;
-    margin-top: 2.5em;
-    padding: 0.1em 1em 1em 1em;
-    border-radius: 0.8em;
-}
+
 
 .recent_p{
     margin: 0.1em 0.3em 0.8em 0;
@@ -301,3 +319,40 @@ a:active, a:hover{
     background-color: #ffcc00;
     color: black;
 }
+
+@media (max-width: 800px) {
+    .main {
+      flex-direction: column;
+    }
+
+    .left_container {
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-around;
+      padding: 0.5em;
+      border-right: none;
+      border-bottom: 1px solid #444;
+    }
+
+    .left_container_box {
+      flex-direction: row;
+      gap: 1em;
+    }
+
+    .nav_button {
+      text-align: center;
+      padding: 0.5em;
+      font-size: 0.85em;
+    }
+
+    .main_middle_body {
+      padding: 1em;
+      margin: 0 auto;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .enter_command_container, .recent_job_container {
+      width: auto;
+    }
+  }

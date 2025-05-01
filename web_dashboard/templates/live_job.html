@@ -26,25 +26,27 @@
             </div>    
         </div>
         <div class="main_middle_body">
-            <h2 class="submit_job_hdn">Live Jobs</h2>
-            <p class="submit_job_p">Monitor jobs currently in the queue or running</p>
+            <div class="submit_job_section">
+                <h2 class="submit_job_hdn">Live Jobs</h2>
+                <p class="submit_job_p">Monitor jobs currently in the queue or running</p>
 
-            <div class="enter_command_container">
-                <h2 class="enter_hdn">Active jobs </h2>
-                {% if live_jobs %}
-                    {% for job in live_jobs %}
-                        <div class="all_jobs submit_job">
-                            <div>
-                                <span>{{ job.command if job.command else job['command']}}</span>
-                                <p class="submit_time"> {{ job.submitted_at if job.submitted_at else job['submitted_at']}} • <span> Job ID:{{ job["jobID"] if job["jobID"] else "?" }}
-                                </span></p>
-                            </div>
-                                <span class="submit_span {{ 'status_queued' if job['status'] == 'Queued' else 'status_running'}}"> {{ job.status if job.status else job['status']}}</span>
-                        </div>  
-                    {% endfor %}
-                {% else %}
-                        <p class="no_job">No live jobs.</p>
-                {% endif %}
+                <div class="enter_command_container">
+                    <h2 class="enter_hdn">Active jobs </h2>
+                    {% if live_jobs %}
+                        {% for job in live_jobs %}
+                            <div class="all_jobs submit_job">
+                                <div>
+                                    <span>{{ job.command if job.command else job['command']}}</span>
+                                    <p class="submit_time"> {{ job.submitted_at if job.submitted_at else job['submitted_at']}} • <span> Job ID:{{ job["jobID"] if job["jobID"] else "?" }}
+                                    </span></p>
+                                </div>
+                                    <span class="submit_span {{ 'status_queued' if job['status'] == 'Queued' else 'status_running'}}"> {{ job.status if job.status else job['status']}}</span>
+                            </div>  
+                        {% endfor %}
+                    {% else %}
+                            <p class="no_job">No live jobs.</p>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
@@ -52,6 +54,6 @@
     <script src="script.js"></script> <!-- Optional: link to your JavaScript file -->
 </body>
 <footer>
-    <p>🚀 Powered by InfraCraft Systems. Built for Builders.</p>
+    <p>🚀 Built for Builders.</p>
 </footer>
 </html>

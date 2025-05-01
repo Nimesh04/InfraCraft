@@ -121,7 +121,7 @@ def consumer():
                     
                     # Wait for the process to complete with timeout
                     try:
-                        returncode = process.wait(timeout=10)
+                        returncode = process.wait(timeout=5)
                         # Join the output thread with a timeout
                         output_thread.join(1.0)
                         
