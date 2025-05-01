@@ -59,6 +59,11 @@ def submit():
         job_queue.put(submission)
         return redirect('/')
 
+@app.route('/api/recent_jobs')
+def api_recent_jobs():
+    recent_jobs = list(result_list[-5:])  # or however many you want
+    return render_template('recent_jobs_partial.html', recent_jobs=recent_jobs)
+
     
 
 if __name__ == "__main__":

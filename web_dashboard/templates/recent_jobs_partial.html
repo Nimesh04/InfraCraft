@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+{% if recent_jobs %}
+    {% for job in recent_jobs %}
+    <div class="all_jobs submit_job">
+        <div>
+            <span>{{ job.command if job.command else job['command']}}</span>
+            <p class="submit_time"> {{ job.submitted_at if job.submitted_at else job['submitted_at']}} • <span> Job ID:{{job.jobID if job.jobID else job["jobID"]}}</span></p>
+        </div>
+            <span class="status_badge 
+            {% if job['status'] == 'Completed' %}status_completed
+            {% elif job['status'] == 'Failed' %}status_failed
+            {% elif job['status'] == 'Timeout' %}status_timeout
+            {% endif %}"> {{ job.status if job.status else job['status']}}</span>
+    </div>    
+    {% endfor %}
+{% else %}
+    <p class="no_job"> No recent jobs yet.</p>
+{% endif %}
